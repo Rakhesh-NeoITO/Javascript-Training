@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let user = { name: "Rakhesh",
+            age: 24,
+            place: "Kattakkada"
+        };
+
+        console.log(Object.values(user));
+        console.log(Object.entries(user));
+
+        let prices = {
+            banana: 1,
+            orange: 2,
+            meat: 4
+        };
+        let doublePrice = Object.fromEntries(
+            Object.entries(prices).map(entry => [entry[0], entry[1] * 2])
+        );
+
+        console.log(doublePrice.meat)
+        console.log(prices)
+        let a = doublePrice;
+        console.log(a);
+    
+        //Task-1
+
+        let salaries = {
+            "john": 500,
+            "pete": 200,
+            "bob": 150,
+            "jack": 150
+        };
+        console.log(salaries)
+
+        //find the total salary of the employees in the object.
+
+        function sumOfSalaries(salaries){
+            let sum = 0;
+
+            for (let salary of Object.values(salaries) ){
+                sum += salary;
+            }
+            return sum ;
+
+        }
+        console.log(sumOfSalaries(salaries));
+        //another way
+         function sumSalaries(salaries){
+            return Object.values(salaries).reduce((a,b) => a + b ,0);
+         }
+         console.log(sumSalaries(salaries))
+
+        //Task-2 find the no of properties in the object.
+        function noOfProperties(salaries){
+            console.log(Object.keys(salaries).length)
+        }
+        noOfProperties(salaries);
+
+
+    let options = {
+    title: "My menu",
+    items: ["Item1", "Item2"]
+    };
+
+function showMenu({
+  title = "Untitled",
+  width: w = 100, 
+  height: h = 200, 
+  items: [item1, item2]
+}) {
+  console.log( `${title} ${w} ${h}` );
+  console.log( item1 ); 
+  console.log( item2 ); 
+}
+
+showMenu(options);
+
+
+//task Destructing
+
+let user1 = {
+  name: "John",
+  years: 30
+};
+
+let {name, years: age, isAdmin = false} = user1;
+
+console.log( age ); 
+console.log( name );
+console.log( isAdmin ); 
+
+    //The Maximal Salaries
+
+let salary2 = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+ };
+
+ function topSalary(salary2){
+    let maxSalary = 0;
+    let nameOfEmployee = "";
+     for( let [name, salary]of Object.entries(salary2)){
+        if(maxSalary < salary){
+            maxSalary = salary;
+            nameOfEmployee = name;
+        }
+     }
+     return nameOfEmployee;
+ }
+ console.log(topSalary(salary2))
+
+
+ let date = new Date();
+ console.log(date);
+ console.log(date.getDate());
+ console.log(date.getUTCDate());
+ console.log(date.getUTCHours());
+ console.log(date.getUTCHours());
+ console.log(new Date().getTimezoneOffset())
+    </script>
+</body>
+</html>
