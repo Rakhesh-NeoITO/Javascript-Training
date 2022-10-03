@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //clousers
+        //task1
+        let name = "John";
+
+        function sayHi1() {
+        console.log("Hi, " + name);
+        }
+
+        name = "Pete";
+
+        sayHi1();
+
+        //task2
+        function makeCounter() {
+          let count = 0;
+
+          return function() {
+            return count++;
+          };
+        }
+
+        let counter = makeCounter();
+        let counter2 = makeCounter();
+
+        console.log( counter() ); 
+        console.log( counter() ); 
+
+        console.log( counter2() ); 
+        console.log( counter2() ); 
+        
+        //task3
+        function Counter() {
+        let count = 0;
+                
+        this.up = function() {
+          return ++count;
+        };
+        this.down = function() {
+          return --count;
+        };
+        }          
+        
+        let counter3= new Counter();
+        
+        console.log( counter3.up() ); 
+        console.log( counter3.up() ); 
+        console.log( counter3.down() );
+
+        //trask 4
+        let phrase = "Hello";
+
+        if (true) {
+          let user = "John";
+        
+          function sayHi() {
+            console.log(`${phrase}, ${user}`);
+          }
+        }
+
+        sayHi();
+
+        //task 5
+        function sum(a) {
+
+        return function(b) {
+          return a + b; 
+        };
+
+        }
+
+        console.log( sum(1)(2) );
+        console.log( sum(5)(-1) );
+
+        //task 6
+
+        // let x = 1;
+
+        // function func() {
+        //   console.log(x); //cant access x before initialization.
+        
+        //   let x = 2;
+        // }
+
+        // func();
+
+        //task 7
+        let users = [
+                    { name: "Pete", age: 18, surname: "Peterson" },
+                    { name: "John", age: 20, surname: "Johnson" },
+                    { name: "Ann", age: 19, surname: "Hathaway" },
+                    { name:"Zack", age: 23, surname:"Anderson"}
+        ];
+        console.log(users.sort((a, b) => a.name > b.name ? 1 : -1));
+        console.log(users.sort((a, b) => a.age - b.age ));
+
+
+        //Old var
+
+        function oldVar() {
+            phrase = "Hello";
+          console.log(phrase);
+          
+          var phrase;
+        }
+        oldVar();
+
+        let a = 3;
+        let b = 2;
+       // let temp=a;
+       // a=b;
+       // b=temp;
+       //[a,b]=[b,a];
+       a = a+b;
+       b = a-b
+       a = a-b
+        console.log(a,b)
+
+
+        
+
+    </script>
+</body>
+</html>
