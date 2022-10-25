@@ -22,6 +22,142 @@
     console.log(user.sayHi.name); 
     console.log(user.sayBye.name);
     
-    </script>
+    //task
+
+       let sayHi = function func(who) {
+      if (who) {
+        console.log(`Hello, ${who}`);
+      } else {
+        func("Guest"); 
+      }
+    };
+
+    sayHi("rakhesh"); 
+    sayHi(""); 
+
+    //func(); //can't access outside the function sayHi
+
+    // function sum(a) {
+
+    // let currentSum = a;
+
+    // function f(b) {
+    //   currentSum += b;
+    //   return f;
+    // }
+
+    // f.toString = function() {
+    //   return currentSum;
+    // };
+
+    // return f;
+    // }
+    // let d = sum (1)(2);
+    // console.log( d); 
+
+    //
+    let value = "test" //can access becuse it is global 
+        function getFunc() {
+      let value = "test"; //can't access "new Function" takes global scope
+
+      let func = new Function('console.log(value)');
+
+      return func;
+    }
+    getFunc()();
+
+    //setInterval & setTimeout
+     //output every second 
+     //using setInterval
+    function printNumbers(from, to) {
+  let current = from;
+
+  let timerId = setInterval(function() {
+    console.log(current);
+    if (current == to) {
+      clearInterval(timerId);
+    }
+    current++;
+  }, 1000);
+}
+printNumbers(5, 10);
+
+    //using setTimeout
+
+    function printNum(from, to) {
+  let current = from;
+
+  setTimeout(function go() {
+    console.log(current);
+    if (current < to) {
+      setTimeout(go, 1000);
+    }
+    current++;
+  }, 1000);
+}
+printNum(5, 10);
+
+//
+let i = 0;
+
+setTimeout(() => console.log(i), 100); 
+
+for(let j = 0; j < 100000000; j++) {
+  i++;
+}
+
+   //
+   function f() {
+  console.log(this ); 
+}
+
+let user1 = {
+  g: f.bind(null)
+};
+
+user1.g();
+
+//
+
+function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user2 = {
+  name: 'John',
+
+  loginOk() {
+    console.log(`${this.name} logged in`);
+  },
+
+  loginFail() {
+    console.log(`${this.name} failed to log in`);
+  },
+
+};
+
+askPassword(user2.loginOk.bind(user2), user2.loginFail.bind(user2));
+
+//
+
+function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user3 = {
+  name: 'John',
+
+  login(result) {
+    console.log( this.name + (result ? ' logged in' : ' failed to log in') );
+  }
+};
+
+askPassword(() => user3.login(true), () => user3.login(false));
+
+</script>
 </body>
 </html>

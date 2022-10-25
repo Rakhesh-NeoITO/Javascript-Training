@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- task 1 -->
+    <div id="elem1"></div>
+<div id="elem2"></div>
+<div id="elem3"></div>
+
+    <!-- task 2 -->
+<ol id="elem">
+    <li>Hello</li>
+    <li>World</li>
+  </ol>
+
+  <!-- task 4 -->
+  <div id="clock">
+    <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec">ss</span>
+  </div>
+
+  <input type="button" onclick="clockStart()" value="Start">
+
+  <!-- click on this button calls clockStop() -->
+  <input type="button" onclick="clockStop()" value="Stop">
+  
+<script>
+    //task 1
+  let text = '<b>text</b>';
+
+  elem1.append(document.createTextNode(text));
+  elem2.innerHTML = text;
+  elem3.textContent = text;
+
+    //task 2
+  function clear(elem) { 
+    while (elem.firstChild) {
+    elem.firstChild.remove();
+  }
+   }
+   //this also works the same
+    function clear(elem) {
+    elem.innerHTML = '';
+    }
+
+  clear(elem);
+
+//   //task 3
+//   let ul = document.createElement('ul');
+//     ul.innerHTML="SOME"
+//     document.body.append(ul);
+
+//     while (true) {
+//       let data = prompt("Enter the text for the list item", "");
+
+//       if (!data) {
+//         break;
+//       }
+
+//       let li = document.createElement('li');
+//       li.textContent = data;
+//       ul.append(li);
+//     }
+
+    
+
+    let timerId;
+
+    function update() {
+      let clock = document.getElementById('clock');
+      let date = new Date();
+
+      let hours = date.getHours();
+      if (hours < 10) hours = '0' + hours;
+      clock.children[0].innerHTML = hours;
+
+      let minutes = date.getMinutes();
+      if (minutes < 10) minutes = '0' + minutes;
+      clock.children[1].innerHTML = minutes;
+
+      let seconds = date.getSeconds();
+      if (seconds < 10) seconds = '0' + seconds;
+      clock.children[2].innerHTML = seconds;
+    }
+
+    function clockStart() {
+     if (!timerId) {
+        timerId = setInterval(update, 1000);
+      }
+      update();
+     }
+
+    function clockStop() {
+      clearInterval(timerId);
+      timerId = null; 
+    }
+
+
+</script>
+</body>
+</html>

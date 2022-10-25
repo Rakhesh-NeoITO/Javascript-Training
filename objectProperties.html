@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let animal = {
+  eats: true
+};
+let rabbit = {
+  jumps: true
+};
+
+rabbit.__proto__ = animal; 
+
+console.log( rabbit.eats ); 
+console.log( rabbit.jumps );
+
+//task
+
+let animal1 = {
+  jumps: null
+};
+let rabbit1 = {
+  __proto__: animal1,
+  jumps: true
+};
+
+console.log( rabbit1.jumps );
+
+delete rabbit1.jumps;
+
+console.log( rabbit1.jumps ); 
+
+delete animal1.jumps;
+
+console.log( rabbit1.jumps );
+
+//
+let head = {
+  glasses: 1
+};
+
+let table = {
+  pen: 3,
+  __proto__: head
+};
+
+let bed = {
+  sheet: 1,
+  pillow: 2,
+  __proto__: table
+};
+
+let pockets = {
+  money: 2000,
+  __proto__: bed
+};
+
+console.log( pockets.pen ); 
+console.log( bed.glasses ); 
+console.log( table.money );
+console.log( pockets.glasses ); 
+
+
+class Clock {
+  constructor({ template }) {
+    this.template = template;
+  }
+
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+
+    let output = this.template
+      .replace('h', hours)
+      .replace('m', mins)
+      .replace('s', secs);
+
+    //console.log(output);
+  }
+
+  stop() {
+    clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  }
+}
+
+
+let clock = new Clock({template: 'h:m:s'});
+clock.start();
+
+    </script>
+</body>
+</html>

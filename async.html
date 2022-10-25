@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function loadJson(url) { 
+  let response = await fetch(url); 
+
+  if (response.status == 200) {
+    let json = await response.json(); 
+    return json;
+  }
+
+  throw new Error(response.status);
+}
+
+loadJson('https://javascript.info/no-such-user.json')
+  .catch(console.log);
+//   .catch(alert)
+
+
+//
+
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  return 10;
+}
+
+function f() {
+  // shows 10 after 1 second
+  wait().then(result => console.log(result));
+}
+
+f();
+    </script>
+</body>
+</html>
